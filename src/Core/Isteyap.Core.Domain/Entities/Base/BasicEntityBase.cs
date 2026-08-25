@@ -8,7 +8,7 @@ namespace Isteyap.Core.Domain.Entities.Base
 {
     public abstract class BasicEntityBase
     {
-        public long Id { get; set; }
+        public long ID { get; set; }
         public EntityStateEnum State { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
