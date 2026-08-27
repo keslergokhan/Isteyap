@@ -12,5 +12,6 @@ namespace Isteyap.Core.Domain.Entities
     {
         public IsteyapUserRoleEnum Role { get; set; }
         public long UserID { get; set; }
+        public User User { get; set; }
     }
 }

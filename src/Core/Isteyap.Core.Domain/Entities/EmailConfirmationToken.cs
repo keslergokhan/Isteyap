@@ -9,13 +9,13 @@ namespace Isteyap.Core.Domain.Entities
 {
     public class EmailConfirmationToken : BasicEntityBase
     {
-        public Guid UserID { get; set; }
+        public long UserID { get; set; }
         public User User { get; set; }
         public string TokenHash { get; set; }
         public DateTime ExpiredDate { get; set; }
         /// <summary>
         /// Email doğrulanma tarihi
         /// </summary>
-        public DateTime UserAt { get; set; }
+        public DateTime? UserAt { get; set; }
     }
 }

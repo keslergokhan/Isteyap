@@ -24,7 +24,7 @@ namespace Isteyap.Core.Domain.Entities
         /// <summary>
         /// Harici hesabın bağlandığı kullanıcı.
         /// </summary>
-        public long UserId { get; set; }
+        public long UserID { get; set; }
 
         /// <summary>
         /// Harici hesabın bağlı olduğu kullanıcı.

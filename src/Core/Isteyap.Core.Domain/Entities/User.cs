@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -65,5 +66,7 @@ namespace Isteyap.Core.Domain.Entities
     public partial class User
     {
         public ICollection<UserRole> Roles { get; set; }
+        public ICollection<EmailConfirmationToken> EmailConfirmationToken { get; set; }
+        public ICollection<UserExternalLogin> UserExternalLogin { get; set; }
     }
 }
