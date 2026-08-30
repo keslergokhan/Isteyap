@@ -16,6 +16,8 @@ namespace Isteyap.Infrastructure.Persistence.Configurations.Base
             builder.HasKey(x=>x.ID);
             builder.ToTable(typeof(T).Name);
 
+            builder.Property(x => x.ID).HasColumnOrder(0);
+
             builder.Property(x => x.ID)
             .UseIdentityColumn(1, 1)
             .ValueGeneratedOnAdd();

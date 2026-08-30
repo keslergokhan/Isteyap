@@ -29,7 +29,7 @@ namespace Isteyap.Infrastructure.Persistence.Configurations
             })
             .IsUnique();
 
-            builder.HasOne(x => x.User).WithMany().HasForeignKey(x => x.UserID).OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(x => x.User).WithMany(x=>x.UserExternalLogins).HasForeignKey(x => x.UserID).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

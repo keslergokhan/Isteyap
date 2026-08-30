@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Isteyap.Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class createDatabase : Migration
+    public partial class CreateDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,11 +15,11 @@ namespace Isteyap.Infrastructure.Persistence.Migrations
                 name: "User",
                 columns: table => new
                 {
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     State = table.Column<int>(type: "int", nullable: false),
-                    ID = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: false),
@@ -38,16 +38,15 @@ namespace Isteyap.Infrastructure.Persistence.Migrations
                 name: "EmailConfirmationToken",
                 columns: table => new
                 {
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     State = table.Column<int>(type: "int", nullable: false),
-                    ID = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserID = table.Column<long>(type: "bigint", nullable: false),
                     TokenHash = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ExpiredDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UserID1 = table.Column<long>(type: "bigint", nullable: true)
+                    UserAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -58,26 +57,20 @@ namespace Isteyap.Infrastructure.Persistence.Migrations
                         principalTable: "User",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_EmailConfirmationToken_User_UserID1",
-                        column: x => x.UserID1,
-                        principalTable: "User",
-                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
                 name: "UserExternalLogin",
                 columns: table => new
                 {
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     State = table.Column<int>(type: "int", nullable: false),
-                    ID = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     Provider = table.Column<int>(type: "int", nullable: false),
                     ProviderUserId = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    UserID = table.Column<long>(type: "bigint", nullable: false),
-                    UserID1 = table.Column<long>(type: "bigint", nullable: true)
+                    UserID = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -88,22 +81,17 @@ namespace Isteyap.Infrastructure.Persistence.Migrations
                         principalTable: "User",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_UserExternalLogin_User_UserID1",
-                        column: x => x.UserID1,
-                        principalTable: "User",
-                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
                 name: "UserRole",
                 columns: table => new
                 {
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     State = table.Column<int>(type: "int", nullable: false),
-                    ID = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     Role = table.Column<int>(type: "int", nullable: false),
                     UserID = table.Column<long>(type: "bigint", nullable: false)
                 },
@@ -130,11 +118,6 @@ namespace Isteyap.Infrastructure.Persistence.Migrations
                 column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmailConfirmationToken_UserID1",
-                table: "EmailConfirmationToken",
-                column: "UserID1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_User_Email",
                 table: "User",
                 column: "Email",
@@ -156,11 +139,6 @@ namespace Isteyap.Infrastructure.Persistence.Migrations
                 name: "IX_UserExternalLogin_UserID",
                 table: "UserExternalLogin",
                 column: "UserID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserExternalLogin_UserID1",
-                table: "UserExternalLogin",
-                column: "UserID1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserRole_UserID_Role",

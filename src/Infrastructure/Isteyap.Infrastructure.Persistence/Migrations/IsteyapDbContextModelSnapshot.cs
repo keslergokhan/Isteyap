@@ -26,7 +26,8 @@ namespace Isteyap.Infrastructure.Persistence.Migrations
                 {
                     b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnOrder(0);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ID"));
 
@@ -55,17 +56,12 @@ namespace Isteyap.Infrastructure.Persistence.Migrations
                     b.Property<long>("UserID")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("UserID1")
-                        .HasColumnType("bigint");
-
                     b.HasKey("ID");
 
                     b.HasIndex("TokenHash")
                         .IsUnique();
 
                     b.HasIndex("UserID");
-
-                    b.HasIndex("UserID1");
 
                     b.ToTable("EmailConfirmationToken", (string)null);
                 });
@@ -74,7 +70,8 @@ namespace Isteyap.Infrastructure.Persistence.Migrations
                 {
                     b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnOrder(0);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ID"));
 
@@ -142,7 +139,8 @@ namespace Isteyap.Infrastructure.Persistence.Migrations
                 {
                     b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnOrder(0);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ID"));
 
@@ -169,14 +167,9 @@ namespace Isteyap.Infrastructure.Persistence.Migrations
                     b.Property<long>("UserID")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("UserID1")
-                        .HasColumnType("bigint");
-
                     b.HasKey("ID");
 
                     b.HasIndex("UserID");
-
-                    b.HasIndex("UserID1");
 
                     b.HasIndex("Provider", "ProviderUserId")
                         .IsUnique();
@@ -188,7 +181,8 @@ namespace Isteyap.Infrastructure.Persistence.Migrations
                 {
                     b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnOrder(0);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ID"));
 
@@ -221,14 +215,10 @@ namespace Isteyap.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("Isteyap.Core.Domain.Entities.EmailConfirmationToken", b =>
                 {
                     b.HasOne("Isteyap.Core.Domain.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("EmailConfirmationTokens")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.HasOne("Isteyap.Core.Domain.Entities.User", null)
-                        .WithMany("EmailConfirmationToken")
-                        .HasForeignKey("UserID1");
 
                     b.Navigation("User");
                 });
@@ -236,14 +226,10 @@ namespace Isteyap.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("Isteyap.Core.Domain.Entities.UserExternalLogin", b =>
                 {
                     b.HasOne("Isteyap.Core.Domain.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("UserExternalLogins")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.HasOne("Isteyap.Core.Domain.Entities.User", null)
-                        .WithMany("UserExternalLogin")
-                        .HasForeignKey("UserID1");
 
                     b.Navigation("User");
                 });
@@ -261,11 +247,11 @@ namespace Isteyap.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("Isteyap.Core.Domain.Entities.User", b =>
                 {
-                    b.Navigation("EmailConfirmationToken");
+                    b.Navigation("EmailConfirmationTokens");
 
                     b.Navigation("Roles");
 
-                    b.Navigation("UserExternalLogin");
+                    b.Navigation("UserExternalLogins");
                 });
 #pragma warning restore 612, 618
         }

@@ -66,7 +66,7 @@ namespace Isteyap.Core.Domain.Entities
     public partial class User
     {
         public ICollection<UserRole> Roles { get; set; }
-        public ICollection<EmailConfirmationToken> EmailConfirmationToken { get; set; }
-        public ICollection<UserExternalLogin> UserExternalLogin { get; set; }
+        public ICollection<EmailConfirmationToken> EmailConfirmationTokens { get; set; }
+        public ICollection<UserExternalLogin> UserExternalLogins { get; set; }
     }
 }

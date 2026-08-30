@@ -22,7 +22,7 @@ namespace Isteyap.Infrastructure.Persistence.Configurations
 
             builder.Property(x => x.UserAt).IsRequired(false);
 
-            builder.HasOne(x => x.User).WithMany().HasForeignKey(x => x.UserID).OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(x => x.User).WithMany(x=>x.EmailConfirmationTokens).HasForeignKey(x => x.UserID).OnDelete(DeleteBehavior.Restrict);
 
             builder.HasIndex(x => x.TokenHash).IsUnique();
         }
