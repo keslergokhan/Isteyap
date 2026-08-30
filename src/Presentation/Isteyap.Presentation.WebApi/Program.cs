@@ -1,7 +1,9 @@
 using Isteyap.Core.Application;
+using Isteyap.Infrastructure.Infrastructure;
 using Isteyap.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.AddInfrastructureApplicationBuilderRegistration();
 
 // Add services to the container.
 
@@ -10,7 +12,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 builder.Services.AddApplicationServiceRegistration(builder.Configuration);
+builder.Services.AddInfrastructurePersistenceServiceRegistration(builder.Configuration);
 builder.Services.AddInfrastructureServiceRegistration(builder.Configuration);
 
 var app = builder.Build();

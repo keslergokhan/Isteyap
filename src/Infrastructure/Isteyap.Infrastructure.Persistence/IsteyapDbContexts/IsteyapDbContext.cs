@@ -1,4 +1,5 @@
-﻿using Isteyap.Core.Domain.Entities;
+﻿using Isteyap.Core.Application.IsteyapDbContext;
+using Isteyap.Core.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Isteyap.Infrastructure.Persistence.IsteyapDbContexts
 {
-    public class IsteyapDbContext : DbContext
+    public class IsteyapDbContext : DbContext, IAppDbContext
     {
         public IsteyapDbContext(DbContextOptions<IsteyapDbContext> dbContext) : base(dbContext)
         {

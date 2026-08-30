@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.37328.6 d17.14
+VisualStudioVersion = 17.14.37328.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
@@ -11,15 +11,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{B794E7E6-0BE5-40B0-82C8-AA96388BAA6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Isteyap.Core.Domain", "src\Core\Isteyap.Core.Domain\Isteyap.Core.Domain.csproj", "{AECDC0D4-DDF9-448C-B95A-D6ED3B74CDC6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Isteyap.Core.Domain", "..\isteyap\src\Core\Isteyap.Core.Domain\Isteyap.Core.Domain.csproj", "{AECDC0D4-DDF9-448C-B95A-D6ED3B74CDC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Isteyap.Core.Application", "src\Core\Isteyap.Core.Application\Isteyap.Core.Application.csproj", "{A3D76C0F-596C-42A6-A4C1-878EA9805D6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Isteyap.Core.Application", "..\isteyap\src\Core\Isteyap.Core.Application\Isteyap.Core.Application.csproj", "{A3D76C0F-596C-42A6-A4C1-878EA9805D6D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{A0076A5B-793D-4405-8B0A-3B02FC96D5DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Isteyap.Infrastructure.Persistence", "src\Infrastructure\Isteyap.Infrastructure.Persistence\Isteyap.Infrastructure.Persistence.csproj", "{B50F1E32-15BD-4C7F-A11E-0D1980BC9059}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Isteyap.Infrastructure.Persistence", "..\isteyap\src\Infrastructure\Isteyap.Infrastructure.Persistence\Isteyap.Infrastructure.Persistence.csproj", "{B50F1E32-15BD-4C7F-A11E-0D1980BC9059}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Isteyap.Presentation.WebApi", "src\Presentation\Isteyap.Presentation.WebApi\Isteyap.Presentation.WebApi.csproj", "{02A78B0D-8D08-449D-AF9B-C9CFDF1FA868}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Isteyap.Presentation.WebApi", "..\isteyap\src\Presentation\Isteyap.Presentation.WebApi\Isteyap.Presentation.WebApi.csproj", "{02A78B0D-8D08-449D-AF9B-C9CFDF1FA868}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Isteyap.Infrastructure.Infrastructure", "src\Infrastructure\Isteyap.Infrastructure.Infrastructure\Isteyap.Infrastructure.Infrastructure.csproj", "{00868B3A-0703-4050-9DFF-B4E7845A8EEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{02A78B0D-8D08-449D-AF9B-C9CFDF1FA868}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02A78B0D-8D08-449D-AF9B-C9CFDF1FA868}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02A78B0D-8D08-449D-AF9B-C9CFDF1FA868}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00868B3A-0703-4050-9DFF-B4E7845A8EEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00868B3A-0703-4050-9DFF-B4E7845A8EEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00868B3A-0703-4050-9DFF-B4E7845A8EEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00868B3A-0703-4050-9DFF-B4E7845A8EEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,6 +62,7 @@ Global
 		{A0076A5B-793D-4405-8B0A-3B02FC96D5DE} = {CEA6DE62-58C8-431E-AE94-D221D66A11AF}
 		{B50F1E32-15BD-4C7F-A11E-0D1980BC9059} = {B794E7E6-0BE5-40B0-82C8-AA96388BAA6A}
 		{02A78B0D-8D08-449D-AF9B-C9CFDF1FA868} = {A0076A5B-793D-4405-8B0A-3B02FC96D5DE}
+		{00868B3A-0703-4050-9DFF-B4E7845A8EEF} = {B794E7E6-0BE5-40B0-82C8-AA96388BAA6A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {413B7B79-AB3C-46A1-A359-20A573AF7FCB}

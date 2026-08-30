@@ -1,4 +1,5 @@
-﻿using Isteyap.Infrastructure.Persistence.IsteyapDbContexts;
+﻿using Isteyap.Core.Application.IsteyapDbContext;
+using Isteyap.Infrastructure.Persistence.IsteyapDbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,12 +13,13 @@ namespace Isteyap.Infrastructure.Persistence
 {
     public static class ServiceRegistrations
     {
-        public static IServiceCollection AddInfrastructureServiceRegistration(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddInfrastructurePersistenceServiceRegistration(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<IsteyapDbContext>(x =>
+            services.AddDbContext<IAppDbContext, IsteyapDbContext>(x =>
             {
                 x.UseSqlServer(configuration.GetConnectionString("IsteyapConnection"));
             });
+
             return services;
         }
     }

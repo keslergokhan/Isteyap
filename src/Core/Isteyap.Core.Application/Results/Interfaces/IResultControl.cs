@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Isteyap.Core.Application.Results.Interfaces
+{
+    public interface IResultControl
+    {
+        public bool IsSuccess { get; }
+        public IExceptionResult Error { get; }
+
+        public IResultControl Success();
+        public IResultControl Fail();
+        public IResultControl Fail(string title, string message);
+        public IResultControl Fail(Exception exception);
+        public IResultControl Fail(IExceptionResult error);
+    }
+}
