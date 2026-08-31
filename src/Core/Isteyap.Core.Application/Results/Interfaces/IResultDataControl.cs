@@ -10,6 +10,8 @@ namespace Isteyap.Core.Application.Results.Interfaces
     {
         public object GetDataObject();
     }
+
+
     public interface IResultDataControl<T> : IResultControl, IResultDataControl
     {
         public T Data { get; }

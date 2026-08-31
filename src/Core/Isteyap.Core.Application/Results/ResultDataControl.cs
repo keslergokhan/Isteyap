@@ -41,5 +41,10 @@ namespace Isteyap.Core.Application.Results
             return this;
         }
 
+        public override IResultControl Fail(Exception exception)
+        {
+            return base.Fail(exception);
+        }
+
     }
 }

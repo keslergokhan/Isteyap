@@ -20,6 +20,8 @@ namespace Isteyap.Core.Application
                 x.AddOpenBehavior(typeof(LoggingBehavior<,>));
                 x.AddOpenBehavior(typeof(ExceptionBehavior<,>));
             });
+
+            services.AddAutoMapper(x => { },Assembly.GetExecutingAssembly());
             return services;
         } 
     }

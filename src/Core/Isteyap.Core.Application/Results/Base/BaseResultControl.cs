@@ -1,4 +1,5 @@
-﻿using Isteyap.Core.Application.Results.Interfaces;
+﻿using Isteyap.Core.Application.Exceptions;
+using Isteyap.Core.Application.Results.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,30 @@ namespace Isteyap.Core.Application.Results.Base
     {
         protected bool _isSuccess;
         public bool IsSuccess => _isSuccess;
-
-        private IExceptionResult _error;
+        private Exception _exception;
         [JsonIgnore]
-        public IExceptionResult Error => _error;
+        public Exception Exception => _exception;
+        public string _errorMessage;
+        public string ErrorMessage => _errorMessage;
+        public string ErrorCode
+        {
+            get
+            {
+                if (this._isSuccess)
+                {
+                    return "";
+                }
+
+                if (this.Exception is AppExceptionBase)
+                {
+                    return (this.Exception as AppExceptionBase).ErrorCode;
+                }
+                else
+                {
+                    return "UNKNOWN_ERROR";
+                }
+            }
+        }
 
         public BaseResultControl()
         {
@@ -36,28 +57,14 @@ namespace Isteyap.Core.Application.Results.Base
         public IResultControl Fail(string title, string message)
         {
             this._isSuccess = false;
-            _error = new ExceptionResult(title, message);
             return this;
         }
 
-        public IResultControl Fail(string title, string message, Exception exception)
+        public virtual IResultControl Fail(Exception exception)
         {
             this._isSuccess = false;
-            _error = new ExceptionResult(title, message, exception);
-            return this;
-        }
-
-        public IResultControl Fail(IExceptionResult error)
-        {
-            this._isSuccess = false;
-            _error = error;
-            return this;
-        }
-
-        public IResultControl Fail(Exception exception)
-        {
-            this._isSuccess = false;
-            _error = new ExceptionResult(exception.Source, exception.Message, exception);
+            this._exception = exception;
+            this._errorMessage = exception.Message;
             return this;
         }
     }
