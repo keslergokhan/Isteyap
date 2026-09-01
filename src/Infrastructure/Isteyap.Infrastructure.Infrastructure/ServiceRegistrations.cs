@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Isteyap.Core.Application.Services;
+using Isteyap.Infrastructure.Infrastructure.Services;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -12,7 +14,7 @@ namespace Isteyap.Infrastructure.Infrastructure
     {
         public static IServiceCollection AddInfrastructureServiceRegistration(this IServiceCollection services, IConfiguration configuration)
         {
-            
+            services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
             return services;
         }

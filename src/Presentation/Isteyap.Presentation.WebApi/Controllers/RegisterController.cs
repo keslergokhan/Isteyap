@@ -21,7 +21,7 @@ namespace Isteyap.Presentation.WebApi.Controllers
         }
 
         [HttpPost("consumer")]
-        public async Task<IActionResult> ConsumerRegister([FromBody] ConsumerRegisterReq request)
+        public async Task<IActionResult> ConsumerRegister([FromBody] ConsumerRegisterReq request, CancellationToken cancellationToken)
         {
             var result = await _mediator.Send(new ConsumerRegisterCommand()
             {
@@ -31,7 +31,7 @@ namespace Isteyap.Presentation.WebApi.Controllers
                 LastName = request.LastName,
                 PhoneNumber = request.PhoneNumber,
                 ConfirmPassword = request.ConfirmPassword
-            });
+            },cancellationToken);
 
             return result.ToActionResult(this);
         }

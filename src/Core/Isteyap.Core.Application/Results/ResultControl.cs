@@ -27,5 +27,10 @@ namespace Isteyap.Core.Application.Results
             }
         }
 
+        public static IResultControl FailError(string title, string message)
+        {
+            return new ResultControl().Fail(title, message);
+        }
+
     }
 }

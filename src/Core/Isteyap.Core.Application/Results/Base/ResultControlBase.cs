@@ -17,6 +17,7 @@ namespace Isteyap.Core.Application.Results.Base
         public Exception Exception => _exception;
         public string _errorMessage;
         public string ErrorMessage => _errorMessage;
+        private string _errorCode;
         public string ErrorCode
         {
             get
@@ -24,6 +25,10 @@ namespace Isteyap.Core.Application.Results.Base
                 if (this._isSuccess)
                 {
                     return "";
+                }
+                else
+                {
+                    return _errorCode;
                 }
 
                 if (this.Exception is AppExceptionBase)
@@ -55,6 +60,8 @@ namespace Isteyap.Core.Application.Results.Base
 
         public IResultControl Fail(string title, string message)
         {
+            _errorCode = title;
+            _errorMessage = message;
             _isSuccess = false;
             return this;
         }

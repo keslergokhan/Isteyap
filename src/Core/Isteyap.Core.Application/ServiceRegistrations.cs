@@ -21,9 +21,10 @@ namespace Isteyap.Core.Application
                 x.AddOpenBehavior(typeof(LoggingBehavior<,>));
                 x.AddOpenBehavior(typeof(ExceptionBehavior<,>));
                 x.AddOpenBehavior(typeof(ValidationBehavior<,>));
+                x.AddOpenBehavior(typeof(TransactionBehavior<,>));
             });
 
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddAutoMapper(x=> { },Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             return services;
         } 

@@ -1,6 +1,7 @@
 ﻿using Isteyap.Core.Application.IsteyapDbContext;
 using Isteyap.Core.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,5 +30,11 @@ namespace Isteyap.Infrastructure.Persistence.IsteyapDbContexts
         public DbSet<User> User => Set<User>();
         public DbSet<UserExternalLogin> UserExternalLogin => Set<UserExternalLogin>();
         public DbSet<UserRole> UserRole => Set<UserRole>();
+
+        public Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default)
+        {
+            return Database.BeginTransactionAsync(cancellationToken);
+        }
+
     }
 }
