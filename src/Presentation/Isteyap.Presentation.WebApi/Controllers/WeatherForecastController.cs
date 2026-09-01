@@ -1,5 +1,4 @@
-using Isteyap.Core.Application.Features.Test;
-using Isteyap.Core.Application.Features.User.Commands;
+using Isteyap.Core.Application.Features;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
