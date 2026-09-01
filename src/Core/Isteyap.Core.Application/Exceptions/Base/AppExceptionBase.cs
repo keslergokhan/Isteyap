@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace Isteyap.Core.Application.Exceptions
 {
-    public class AppExceptionBase : Exception
+    public abstract class AppExceptionBase : Exception
     {
         public virtual string ErrorCode { get; }
+
+        public List<string> ErrorDetails { get; } = new List<string>(); 
+
         protected AppExceptionBase()
         {
 
@@ -26,5 +29,6 @@ namespace Isteyap.Core.Application.Exceptions
         {
             this.ErrorCode = errorCode;
         }
+
     }
 }

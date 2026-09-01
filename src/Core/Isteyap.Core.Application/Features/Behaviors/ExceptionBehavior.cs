@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Isteyap.Core.Application.Results;
+using MediatR;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,9 @@ using System.Threading.Tasks;
 
 namespace Isteyap.Core.Application.Features.Behaviors
 {
-    public class ExceptionBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    public class ExceptionBehavior<TRequest, TResponse> : 
+        IPipelineBehavior<TRequest, TResponse> 
+        where TResponse : IResultControl
     {
         private readonly ILogger<ExceptionBehavior<TRequest, TResponse>> _logger;
 
@@ -26,8 +29,10 @@ namespace Isteyap.Core.Application.Features.Behaviors
             }
             catch (Exception ex)
             {
+
                 _logger.LogError(ex,"Bir hata oluştu {RequestName}",type.Name);
-                throw;
+
+                return (TResponse)ResultControl.FailError(ex);
             }
         }
     }

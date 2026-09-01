@@ -1,5 +1,4 @@
 ﻿using Isteyap.Core.Application.Results;
-using Isteyap.Core.Application.Results.Interfaces;
 using MediatR;
 using System;
 using System.Collections.Generic;

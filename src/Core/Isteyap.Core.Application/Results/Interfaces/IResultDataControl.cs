@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Isteyap.Core.Application.Results.Interfaces
+namespace Isteyap.Core.Application.Results
 {
     public interface IResultDataControl
     {

@@ -1,4 +1,5 @@
 using Isteyap.Core.Application.Features.Test;
+using Isteyap.Core.Application.Features.User.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -24,16 +25,16 @@ namespace Isteyap.Presentation.WebApi.Controllers
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        public async Task<IEnumerable<WeatherForecast>> Get()
+        public async Task<IActionResult> Get()
         {
-            await _mediator.Send(new GetTestCommand());
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+
+            var result = await _mediator.Send(new ConsumerRegisterCommand()
             {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+
+            });
+
+            return result.ToActionResult(this);
+
         }
     }
 }

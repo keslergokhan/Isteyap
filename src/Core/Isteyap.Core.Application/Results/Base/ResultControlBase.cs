@@ -1,5 +1,4 @@
 ﻿using Isteyap.Core.Application.Exceptions;
-using Isteyap.Core.Application.Results.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Isteyap.Core.Application.Results.Base
 {
-    public abstract class BaseResultControl : IResultControl
+    public abstract class ResultControlBase : IResultControl
     {
         protected bool _isSuccess;
         public bool IsSuccess => _isSuccess;
@@ -38,7 +37,7 @@ namespace Isteyap.Core.Application.Results.Base
             }
         }
 
-        public BaseResultControl()
+        public ResultControlBase()
         {
             _isSuccess = true;
         }
@@ -50,21 +49,21 @@ namespace Isteyap.Core.Application.Results.Base
 
         public IResultControl Fail()
         {
-            this._isSuccess = false;
+            _isSuccess = false;
             return this;
         }
 
         public IResultControl Fail(string title, string message)
         {
-            this._isSuccess = false;
+            _isSuccess = false;
             return this;
         }
 
         public virtual IResultControl Fail(Exception exception)
         {
-            this._isSuccess = false;
-            this._exception = exception;
-            this._errorMessage = exception.Message;
+            _isSuccess = false;
+            _exception = exception;
+            _errorMessage = exception.Message;
             return this;
         }
     }

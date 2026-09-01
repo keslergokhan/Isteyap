@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace Isteyap.Core.Application.Results.Interfaces
+namespace Isteyap.Core.Application.Results
 {
     public interface IResultControl
     {
@@ -19,5 +19,7 @@ namespace Isteyap.Core.Application.Results.Interfaces
         public IResultControl Fail();
         public IResultControl Fail(string title, string message);
         public IResultControl Fail(Exception exception);
+
+
     }
 }

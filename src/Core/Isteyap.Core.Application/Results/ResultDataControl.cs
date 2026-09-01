@@ -1,5 +1,4 @@
 ﻿using Isteyap.Core.Application.Results.Base;
-using Isteyap.Core.Application.Results.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Isteyap.Core.Application.Results
 {
-    public class ResultDataControl<T> : BaseResultControl, IResultDataControl<T>
+    public class ResultDataControl<T> : ResultControlBase, IResultDataControl<T>
     {
         public ResultDataControl()
         {
@@ -41,9 +40,37 @@ namespace Isteyap.Core.Application.Results
             return this;
         }
 
-        public override IResultControl Fail(Exception exception)
+        public IResultDataControl<T> Fail(Exception exception)
         {
-            return base.Fail(exception);
+            base.Fail(exception);
+            return this;
+        }
+
+        public IResultDataControl<T> Fail()
+        {
+            base.Fail();
+            return this;
+        }
+
+        public static IResultDataControl<T> CreateSuccess(T data)
+        {
+            if (data!=null)
+            {
+                return new ResultDataControl<T>().SuccessSetData(data);
+            }
+            return new ResultDataControl<T>().SuccessSetData(default(T));
+        }
+
+
+
+        public static IResultDataControl<T> FailError(Exception exception = null)
+        {
+            if (exception != null)
+            {
+                return new ResultDataControl<T>().Fail(exception);
+            }
+
+            return new ResultDataControl<T>().Fail();
         }
 
     }

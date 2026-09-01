@@ -1,8 +1,8 @@
 ﻿using Isteyap.Core.Application.Exceptions;
-using Isteyap.Core.Application.Results.Interfaces;
+using Isteyap.Core.Application.Results;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Isteyap.Presentation.WebApi.Extensions
+namespace Isteyap.Presentation.WebApi
 {
     public static class ActionResultExtension
     {
@@ -19,7 +19,8 @@ namespace Isteyap.Presentation.WebApi.Extensions
                     return controller.BadRequest(new
                     {
                         errorMessage = result.ErrorMessage,
-                        errorCode = result.ErrorCode
+                        errorCode = result.ErrorCode,
+                        errorDetails = result.Exception is AppExceptionBase appException ? appException.ErrorDetails : []
                     });
                 }
 
@@ -45,7 +46,8 @@ namespace Isteyap.Presentation.WebApi.Extensions
                     return controller.BadRequest(new
                     {
                         errorMessage = result.ErrorMessage,
-                        errorCode = result.ErrorCode
+                        errorCode = result.ErrorCode,
+                        errorDetails = result.Exception is AppExceptionBase appException ? appException.ErrorDetails : []
                     });
                 }
 

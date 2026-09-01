@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using FluentValidation;
 
 namespace Isteyap.Core.Application
 {
@@ -19,9 +20,11 @@ namespace Isteyap.Core.Application
                 x.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
                 x.AddOpenBehavior(typeof(LoggingBehavior<,>));
                 x.AddOpenBehavior(typeof(ExceptionBehavior<,>));
+                x.AddOpenBehavior(typeof(ValidationBehavior<,>));
             });
 
-            services.AddAutoMapper(x => { },Assembly.GetExecutingAssembly());
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             return services;
         } 
     }
