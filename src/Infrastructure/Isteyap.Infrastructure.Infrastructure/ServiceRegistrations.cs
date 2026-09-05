@@ -1,4 +1,6 @@
-﻿using Isteyap.Core.Application.Services;
+﻿using Isteyap.Core.Application.Configurations.AppSettings;
+using Isteyap.Core.Application.Services;
+using Isteyap.Core.Application.Services.Interfaces;
 using Isteyap.Infrastructure.Infrastructure.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +18,8 @@ namespace Isteyap.Infrastructure.Infrastructure
         {
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
+            services.Configure<EmailOptions>(configuration.GetSection(EmailOptions.SectionName));
+            services.AddScoped<IEmailService, EmailService>();
             return services;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using Isteyap.Core.Application.Dtos;
 using Isteyap.Core.Application.Features;
+using Isteyap.Core.Application.Services.Interfaces;
 using Isteyap.Presentation.WebApi.Controllers.Base;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -13,11 +14,13 @@ namespace Isteyap.Presentation.WebApi.Controllers
     {
         private readonly ILogger<RegisterController> _logger;
         private readonly IMediator _mediator;
+        private readonly IEmailService emailService;
 
-        public RegisterController(ILogger<RegisterController> logger, IMediator mediator)
+        public RegisterController(ILogger<RegisterController> logger, IMediator mediator, IEmailService emailService)
         {
             _logger = logger;
             _mediator = mediator;
+            this.emailService = emailService;
         }
 
         [HttpPost("consumer")]
@@ -34,6 +37,18 @@ namespace Isteyap.Presentation.WebApi.Controllers
             },cancellationToken);
 
             return result.ToActionResult(this);
+        }
+
+        [HttpPost("eposta")]
+        public async Task<IActionResult> eposta(CancellationToken cancellationToken)
+        {
+            await emailService.SendAsync(new Core.Application.Services.EmailMessage
+            {
+                To = "gkhnkslr34@gmail.com",
+                Subject = "Şifre doğrulama",
+                Body = "Oturum açma için 234234"
+            });
+            return Ok();
         }
     }
 }

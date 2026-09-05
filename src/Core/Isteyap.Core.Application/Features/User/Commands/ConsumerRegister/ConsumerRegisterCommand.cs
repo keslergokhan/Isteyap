@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Isteyap.Core.Application.Features
 {
-    public class ConsumerRegisterCommand : IRequest<IResultControl>, ITransactionBehavior
+    public class ConsumerRegisterCommand : IRequest<IResultControl>
     {
         /// <summary>
         /// Kullanıcının ilk adı.
